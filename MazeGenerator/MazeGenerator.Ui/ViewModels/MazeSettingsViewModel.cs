@@ -15,14 +15,14 @@ namespace MazeGenerator.Ui.ViewModels
         public event Func<MazeSettings, Task> OnMazeCreate;
 
         [RelayCommand]
-        public async Task GenerateMaze()
+        private async Task GenerateMaze()
         {
             var mazeSettings = new MazeSettings
             {
                 MazeWidth = MazeWidth,
                 MazeHeight = MazeHeight
             };
-
+            
             await OnMazeCreate?.Invoke(mazeSettings);
         }
     }

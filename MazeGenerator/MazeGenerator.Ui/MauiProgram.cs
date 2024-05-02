@@ -1,4 +1,5 @@
-﻿using MazeGenerator.Ui.Factories;
+﻿using CommunityToolkit.Maui;
+using MazeGenerator.Ui.Factories;
 using MazeGenerator.Ui.ViewModels;
 using MazeGenerator.Ui.Views;
 using Microsoft.Extensions.Logging;
@@ -10,6 +11,7 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder()
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

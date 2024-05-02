@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:MazeGenerator.Ui.ViewModels"
              xmlns:views="clr-namespace:MazeGenerator.Ui.Views"
+             x:DataType="viewModels:IMainPageViewModel"
              x:Class="MazeGenerator.Ui.Views.MainPage">
 
     <ContentPage.Resources>
@@ -24,7 +25,8 @@
 
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <views:MazeCellView Grid.Row="{Binding Row}" Grid.Column="{Binding Column}"/>
+                        <views:MazeCellView Grid.Row="{Binding Row}" Grid.Column="{Binding Column}"
+                                            x:DataType="viewModels:IMazeCellViewModel"/>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
                 

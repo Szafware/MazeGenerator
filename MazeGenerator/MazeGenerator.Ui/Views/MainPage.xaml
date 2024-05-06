@@ -3,24 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:MazeGenerator.Ui.ViewModels"
              xmlns:views="clr-namespace:MazeGenerator.Ui.Views"
+             xmlns:converters="clr-namespace:MazeGenerator.Ui.Converters"
              x:DataType="viewModels:IMainPageViewModel"
              x:Class="MazeGenerator.Ui.Views.MainPage">
 
     <ContentPage.Resources>
+
+        <converters:IntegerToGridRowCountConverter x:Key="integerToGridRowCountConverter"/>
+        <converters:IntegerToGridColumnCountConverter x:Key="integerToGridColumnCountConverter"/>
+
         <DataTemplate x:Key="X" x:DataType="{x:Type viewModels:MazeCellViewModel}">
             <views:MazeSettingsView/>
         </DataTemplate>
+
     </ContentPage.Resources>
 
     <ScrollView>
-        <Grid ColumnDefinitions="4*,*" RowDefinitions="10*,*" RowSpacing="0"
+        <Grid ColumnDefinitions="4*,*" RowDefinitions="10*,*"
               Margin="20">
 
             <views:MazeSettingsView Grid.Column="1" Grid.Row="0"
                                     BindingContext="{Binding MazeSettingsViewModel}" />
 
             <Grid Grid.Column="0" Grid.Row="0"
-                  RowDefinitions="*,*,*,*,*,*,*,*,*,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*"
+                  RowDefinitions="{Binding MazeHeight, Converter={StaticResource integerToGridRowCountConverter}}"
+                  ColumnDefinitions="{Binding MazeWidth, Converter={StaticResource integerToGridColumnCountConverter}}"
                   BindableLayout.ItemsSource="{Binding MazeCellViewModels}">
 
                 <BindableLayout.ItemTemplate>
@@ -29,7 +36,7 @@
                                             x:DataType="viewModels:IMazeCellViewModel"/>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
-                
+
             </Grid>
 
         </Grid>

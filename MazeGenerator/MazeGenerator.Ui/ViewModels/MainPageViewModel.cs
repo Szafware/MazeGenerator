@@ -15,12 +15,11 @@ public partial class MainPageViewModel : ObservableObject, IMainPageViewModel
     [ObservableProperty]
     private ObservableCollection<IMazeCellViewModel> _mazeCellViewModels = new ObservableCollection<IMazeCellViewModel>();
 
-    // TODO: Grid row/column count should be dependent on those
-    //[ObservableProperty]
-    //private int _mazeWidth;
+    [ObservableProperty]
+    private int _mazeWidth;
 
-    //[ObservableProperty]
-    //private int _mazeHeight;
+    [ObservableProperty]
+    private int _mazeHeight;
 
     private readonly IMazeCellViewModelFactory _mazeCellViewModelFactory;
 
@@ -40,9 +39,12 @@ public partial class MainPageViewModel : ObservableObject, IMainPageViewModel
     {
         MazeCellViewModels.Clear();
 
-        for (int x = 0; x < mazeSettings.MazeWidth; x++)
+        MazeWidth = mazeSettings.MazeWidth;
+        MazeHeight = mazeSettings.MazeHeight;
+
+        for (int x = 0; x < MazeWidth; x++)
         {
-            for (int y = 0; y < mazeSettings.MazeHeight; y++)
+            for (int y = 0; y < MazeHeight; y++)
             {
                 var mazeCellViewModel = _mazeCellViewModelFactory.Create();
                 mazeCellViewModel.Column = x;
